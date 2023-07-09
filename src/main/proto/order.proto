@@ -1,0 +1,36 @@
+syntax = "proto3";
+package tutorial;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.demo.protos";
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated Product products = 2;
+}
+
+message CreateOrderResponse {
+  int32 id = 1;
+  Status status = 2;
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+}
+
+enum Status {
+  CREATED = 0;
+  DONE = 1;
+  CANCELED = 2;
+  RETURNED = 3;
+}
+
+service CreateOrderService {
+  rpc create(CreateOrderRequest) returns (CreateOrderResponse);
+}
