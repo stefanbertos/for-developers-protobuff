@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,10 @@ public class ProductOrder {
     @Column(name="id")
     private Long id;
 
+    @NotNull
     private String userId;
 
+    @NotEmpty
     @OneToMany(
             mappedBy = "productOrder",
             cascade = CascadeType.ALL,
