@@ -1,6 +1,6 @@
 package com.example.demo.rest;
 
-import com.example.demo.dto.ProductDTO;
+import com.example.demo.protos.ProductProtos;
 import com.example.demo.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ public class ProductRestController {
     private final ProductService productService;
 
     @GetMapping
-    public Flux<ProductDTO> getAllProducts() {
+    public Flux<ProductProtos.Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Mono<ProductDTO> getProductById(@PathVariable Long id) {
+    public Mono<ProductProtos.Product> getProductById(@PathVariable Long id) {
         try {
             return productService.getProductById(id);
         } catch (EntityNotFoundException e) {
@@ -33,7 +33,7 @@ public class ProductRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createProduct(@RequestBody ProductDTO product) {
+    public Long createProduct(@RequestBody ProductProtos.Product product) {
         return productService.createProduct(product);
     }
 }

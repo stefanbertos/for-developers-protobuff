@@ -4,9 +4,12 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('protobuf', '3.24.3')
-            library('protobuf-java', 'com.google.protobuf', 'protobuf-java').versionRef('protobuf')
-            library('protobuf-java-util', 'com.google.protobuf', 'protobuf-java-util').versionRef('protobuf')
-            library('protobuf-protoc', 'com.google.protobuf', 'protoc').versionRef('protobuf')
+            library('protobuf.java', 'com.google.protobuf', 'protobuf-java').versionRef('protobuf')
+            library('protobuf.java.util', 'com.google.protobuf', 'protobuf-java-util').versionRef('protobuf')
+            library('protobuf.protoc', 'com.google.protobuf', 'protoc').versionRef('protobuf')
+            version('logbook', '3.4.0')
+            library('logbook.starter','org.zalando','logbook-spring-boot-starter').versionRef('logbook')
+            library('logbook.webflux','org.zalando','logbook-spring-boot-webflux-autoconfigure').versionRef('logbook')
         }
     }
 }

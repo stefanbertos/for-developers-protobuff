@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.converter.ProductDTOtoProductConverter;
-import com.example.demo.converter.ProductToProductDTOConverter;
+import com.example.demo.converter.ProductProtoToProductConverter;
+import com.example.demo.converter.ProductToProductProtoConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
@@ -12,8 +12,8 @@ public class ConversionServiceConfig {
     @Bean
     public ConversionService conversionService() {
         var conversionService = new DefaultConversionService();
-        conversionService.addConverter(new ProductDTOtoProductConverter());
-        conversionService.addConverter(new ProductToProductDTOConverter());
+        conversionService.addConverter(new ProductProtoToProductConverter());
+        conversionService.addConverter(new ProductToProductProtoConverter());
         return conversionService;
     }
 }

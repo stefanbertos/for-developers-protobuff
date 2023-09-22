@@ -1,0 +1,23 @@
+syntax = "proto3";
+package tutorial;
+
+option java_multiple_files = false;
+option java_package = "com.example.demo.protos";
+option java_outer_classname = "ProductProtos";
+
+message Product {
+  int64 productId = 1;
+  string productName = 2;
+  string productDescription = 3;
+  float productPrice = 4;
+  string productImage = 5;
+  ProductCategory productCategory = 6;
+}
+
+enum ProductCategory {
+  UNKNOWN = 0;
+  TOY = 1;
+  PC = 2;
+  CAR = 3;
+  FOOD = 4;
+}

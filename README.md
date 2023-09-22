@@ -1,9 +1,6 @@
 # for-developers-protobuff
 
-todo generate python stubs with protoc
-use python library show alternative
-convert to json with proto util
+To generate proto classes you could also try manually with:
 
-
-protoc --java_out=java resources/baeldung.proto
+protoc --java_out=java resources/product.proto
 

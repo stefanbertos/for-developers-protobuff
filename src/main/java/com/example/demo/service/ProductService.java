@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 
-import com.example.demo.dto.ProductDTO;
 import com.example.demo.entity.Product;
+import com.example.demo.protos.ProductProtos;
 import com.example.demo.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -21,20 +21,20 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ConversionService conversionService;
 
-    public Flux<ProductDTO> getAllProducts() {
-        return Flux.fromStream(productRepository.findAll().stream().map(product -> conversionService.convert(product, ProductDTO.class)));
+    public Flux<ProductProtos.Product> getAllProducts() {
+        return Flux.fromStream(productRepository.findAll().stream().map(product -> conversionService.convert(product, ProductProtos.Product.class)));
     }
 
-    public Mono<ProductDTO> getProductById(Long id) {
+    public Mono<ProductProtos.Product> getProductById(Long id) {
         var product = productRepository.findById(id);
         if (product.isEmpty()) {
             throw new EntityNotFoundException();
         }
-        return Mono.just(Objects.requireNonNull(conversionService.convert(product.get(), ProductDTO.class)));
+        return Mono.just(Objects.requireNonNull(conversionService.convert(product.get(), ProductProtos.Product.class)));
     }
 
-    public Long createProduct(ProductDTO productDTO) {
-        var product = conversionService.convert(productDTO, Product.class);
+    public Long createProduct(ProductProtos.Product productProto) {
+        var product = conversionService.convert(productProto, Product.class);
         assert product != null;
         return productRepository.save(product).getId();
     }
