@@ -6,6 +6,7 @@ option java_package = "com.example.demo.protos";
 option java_outer_classname = "ProductProtos";
 
 message Product {
+  // you can document properly all fields
   int64 productId = 1;
   string productName = 2;
   string productDescription = 3;
